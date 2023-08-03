@@ -12,4 +12,13 @@ To install the CAMT053 Tools al you need to do is:
 The gitignore file states that .csv and .xml files will not be uploaded through git. The information in the files is personal en thereby protected under GDPA regulations. So the files itself should never be uploaded on GitHub.
 
 ## CAMT053ToCSV
+The Python code to tanslate the XML to CSV is devided in three functions:
 
+- parse_camt053_xml
+Through naming the path (like XPath) the code will search the textelements in serveral XML elements. The information is saved in transactions.
+
+- write_to_csv
+This is the function which writes a header and the transactions to a file.
+
+- selectfile
+This is the function which asks the user to select a CAMT053 file. The location on which the CAMT053 is retrieved, the CSV will be saved.

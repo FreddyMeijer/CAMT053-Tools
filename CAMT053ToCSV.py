@@ -31,16 +31,8 @@ def write_to_csv(transactions, csv_file):
 
 def selectFile():
     File=filedialog.askopenfilename(
-        title="Selecteer het B4U File",
-        filetypes=[("B4U Bestanden","*.b4u"),("Alle bestanden","*.*")]
-    )
-    if File:
-        return File
-
-def selectFile():
-    File=filedialog.askopenfilename(
-        title="Selecteer het CAMT053 bestand",
-        filetypes=[("B4U Bestanden","*.xml"),("Alle bestanden","*.*")]
+        title="Selecteer het CAMT053 Bestand",
+        filetypes=[("Bankbestanden","*.xml"),("Alle bestanden","*.*")]
     )
     if File:
         return File
