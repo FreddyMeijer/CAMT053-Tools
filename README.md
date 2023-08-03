@@ -11,6 +11,13 @@ To install the CAMT053 Tools al you need to do is:
 ## .gitignore
 The gitignore file states that .csv and .xml files will not be uploaded through git. The information in the files is personal en thereby protected under GDPA regulations. So the files itself should never be uploaded on GitHub.
 
+## CAMT053Summary
+There are serveral bugs reported in Leiden in which a CAMT053 file had serveral entries of another day. This may not occur. So with this tool, the CAMT053 file is evaluated. The element *Stmt* must be unique. So, there should only be once in the file. The user selects a file and the code checks how many times *Stmt* is in the file. The report is saved on the same place as the CAMT053. The report shows something like:
+
+`Het element 'Stmt' komt 1 keer voor in C:/[...]]B0004207048_EUR_479651.xml.`
+
+When the report states there are more than 1 Stmt elements, please download the CAMT053 again from the bank. 
+
 ## CAMT053ToCSV
 The Python code to tanslate the XML to CSV is devided in three functions:
 
