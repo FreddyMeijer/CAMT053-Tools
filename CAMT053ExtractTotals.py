@@ -47,7 +47,7 @@ def selectFile():
 
 if __name__ == '__main__':
     xml_file = selectFile()
-    csv_file = 'output.csv'
+    csv_file = xml_file.replace('.xml', '.csv')
     
     transactions = parse_camt053_xml(xml_file)
     write_to_csv(transactions, csv_file)
