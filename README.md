@@ -14,7 +14,17 @@ The gitignore file states that .csv and .xml files will not be uploaded through 
 ## CAMT053Summary
 There are serveral bugs reported in Leiden in which a CAMT053 file had serveral entries of another day. This may not occur. So with this tool, the CAMT053 file is evaluated. The element *Stmt* must be unique. So, there should only be once in the file. The user selects a file and the code checks how many times *Stmt* is in the file. The report is saved on the same place as the CAMT053. The report shows something like:
 
-`Het element 'Stmt' komt 1 keer voor in C:/[...]]B0004207048_EUR_479651.xml.`
+`**************************************************************************************************************************************************************
+RAPPORT CAMT053 BESTAND
+Bestand: 01abf918-302b-11ee-a98a-220ec8f976df-2023-07-21_CAMT053_NL57INGB0004207048_EUR_479651.xml
+Datum: 03-08-2023
+**************************************************************************************************************************************************************
+
+Stmt komt 1 keer voor. Het betreft het bestand van 1 dag. Het bestand kan je inlezen in PAL21
+
+**************************************************************************************************************************************************************
+EINDE RAPPORTAGE
+**************************************************************************************************************************************************************`
 
 When the report states there are more than 1 Stmt elements, please download the CAMT053 again from the bank. 
 
