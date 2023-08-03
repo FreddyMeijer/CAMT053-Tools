@@ -1,0 +1,5 @@
+pandas
+csv
+ktinker
+requests
+matplotlib
