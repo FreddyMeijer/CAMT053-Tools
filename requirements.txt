@@ -1,5 +1,4 @@
 pandas
 datetime
-ktinker
 requests
 matplotlib
