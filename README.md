@@ -12,9 +12,9 @@ To install the CAMT053 Tools al you need to do is:
 The gitignore file states that .csv and .xml files will not be uploaded through git. The information in the files is personal en thereby protected under GDPA regulations. So the files itself should never be uploaded on GitHub.
 
 ## CAMT053Summary
-There are serveral bugs reported in Leiden in which a CAMT053 file had serveral entries of another day. This may not occur. So with this tool, the CAMT053 file is evaluated. The element *Stmt* must be unique. So, there should only be once in the file. The user selects a file and the code checks how many times *Stmt* is in the file. The report is saved on the same place as the CAMT053. The report shows something like the textfile which is also included (01abf918-302b-11ee-a98a-220ec8f976df-2023-07-21_CAMT053_****************_EUR_479651.txt)
+There are serveral bugs reported in Leiden in which a CAMT053 file had serveral entries of another day. This may not occur. So with this tool, the CAMT053 file is evaluated. The element *Stmt* must be unique. So, there should only be once in the file. The user selects a file and the code checks how many times *Stmt* is in the file. The report is saved on the same place as the CAMT053. The report shows something like the textfile which is also included (`01abf918-302b-11ee-a98a-220ec8f976df-2023-07-21_CAMT053_****************_EUR_479651.txt`). When the report states there are more than 1 Stmt elements, please download the CAMT053 again from the bank.
 
-When the report states there are more than 1 Stmt elements, please download the CAMT053 again from the bank. 
+Furthermore the total ammount of bookings and the sum of them is also added to the report. 
 
 ## CAMT053ToCSV
 The Python code to tanslate the XML to CSV is devided in three functions:
