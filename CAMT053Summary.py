@@ -3,6 +3,7 @@ import xml.etree.ElementTree as ET
 import tkinter as tk
 from tkinter import filedialog
 import datetime
+import pandas as pd
 
 def count_xml_elements(xml_file, element_name):
     try:
@@ -17,6 +18,26 @@ def count_xml_elements(xml_file, element_name):
     except Exception as e:
         print(f"Error: {e}")
         return 0
+
+def parse_camt053_xml(xml_file):
+    tree = ET.parse(xml_file)
+    root = tree.getroot()
+
+    transactions = []
+    for entry in root.findall('.//{urn:iso:std:iso:20022:tech:xsd:camt.053.001.02}Stmt/{urn:iso:std:iso:20022:tech:xsd:camt.053.001.02}TxsSummry'):
+        txn_data = {
+            'Totaal aantal boekingen': entry.findtext('{urn:iso:std:iso:20022:tech:xsd:camt.053.001.02}TtlNtries/{urn:iso:std:iso:20022:tech:xsd:camt.053.001.02}NbOfNtries'),
+            'Totale som van boekingen': entry.findtext('{urn:iso:std:iso:20022:tech:xsd:camt.053.001.02}TtlNtries/{urn:iso:std:iso:20022:tech:xsd:camt.053.001.02}Sum'),
+            'Totaal aantal credit boekingen': entry.findtext('{urn:iso:std:iso:20022:tech:xsd:camt.053.001.02}TtlCdtNtries/{urn:iso:std:iso:20022:tech:xsd:camt.053.001.02}NbOfNtries'),
+            'Totale som van credit boekingen': entry.findtext('{urn:iso:std:iso:20022:tech:xsd:camt.053.001.02}TtlCdtNtries/{urn:iso:std:iso:20022:tech:xsd:camt.053.001.02}Sum'),
+            'Totaal aantal debet boekingen': entry.findtext('{urn:iso:std:iso:20022:tech:xsd:camt.053.001.02}TtlDbtNtries/{urn:iso:std:iso:20022:tech:xsd:camt.053.001.02}NbOfNtries'),
+            'Totale som van debet boekingen': entry.findtext('{urn:iso:std:iso:20022:tech:xsd:camt.053.001.02}TtlDbtNtries/{urn:iso:std:iso:20022:tech:xsd:camt.053.001.02}Sum')
+        }
+        transactions.append(txn_data)
+
+    df = pd.DataFrame(transactions, ['Totaal aantal boekingen','Totale som van boekingen','Totaal aantal credit boekingen','Totale som van credit boekingen','Totaal aantal debet boekingen','Totale som van debet boekingen'])
+    df = (df.iloc[0])
+    return df
 
 def selectFile():
     File = filedialog.askopenfilename(
@@ -43,10 +64,14 @@ if __name__ == '__main__':
     else:
         bericht = f"\n\nOnverwachte fout. Meldt de fout bij Functioneel beheer. Stuur het CAMT053 bestand mee.\n\n"
 
+    df = parse_camt053_xml(xml_file)
+    dfAsString = df.to_string()
+
     bestandsnaam = os.path.basename(xml_file)
-    headerblok=f"**************************************************************************************************************************************************************\nRAPPORT CAMT053 BESTAND\nBestand: {bestandsnaam}\nDatum: {vandaag}\n**************************************************************************************************************************************************************"
-    footerblok="**************************************************************************************************************************************************************\nEINDE RAPPORTAGE\n**************************************************************************************************************************************************************"
+    headerblok=f"RAPPORT CAMT053 BESTAND\n\nBestand: {bestandsnaam}\nDatum: {vandaag}"
+    footerblok="\n\nEINDE RAPPORTAGE"
     with open(output_file, 'w') as f:
         f.write(headerblok)
         f.write(bericht)
+        f.write(dfAsString)
         f.write(footerblok)
