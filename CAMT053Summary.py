@@ -48,7 +48,7 @@ def selectFile():
         return File
 
 if __name__ == '__main__':
-    print("CAMT053 SAMENVATTING")
+    print("CAMT053 SAMENVATTING\n\nHet rapport wordt opgeslagen op dezelfde plek als waar je het bankbestand hebt opgeslagen.")
     xml_file = selectFile()
     element_name = 'Stmt'
     
@@ -77,4 +77,4 @@ if __name__ == '__main__':
         f.write(dfAsString)
         f.write(footerblok)
     
-    print(f"\n\n\nSAMENVATTING OPGESLAGEN OP {output_file}")
+    print(f"SAMENVATTING OPGESLAGEN OP {output_file}")
