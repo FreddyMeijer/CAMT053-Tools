@@ -1,2 +1,4 @@
 *.xml
 *.csv
+/build
+.spec

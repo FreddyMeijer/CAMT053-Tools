@@ -48,6 +48,7 @@ def selectFile():
         return File
 
 if __name__ == '__main__':
+    print("CAMT053 SAMENVATTING")
     xml_file = selectFile()
     element_name = 'Stmt'
     
@@ -75,3 +76,5 @@ if __name__ == '__main__':
         f.write(bericht)
         f.write(dfAsString)
         f.write(footerblok)
+    
+    print(f"\n\n\nSAMENVATTING OPGESLAGEN OP {output_file}")
